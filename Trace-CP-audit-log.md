@@ -35,7 +35,7 @@
 Postman另外开一个窗口，获取Audit Log信息。
 ![alt text](./img/api-01.png)
 
-1. url, https://api.\<SAP Cloud Platform host\>/auditlog/v1/accounts/<account>/AuditLogRecords?$count=true  
+1. url, https://api.\<SAP Cloud Platform host\>/auditlog/v1/accounts/\<account\>/AuditLogRecords?$count=true  
 举例:https://api.cn1.hana.ondemand.com/auditlog/v1/accounts/f8675ad50/AuditLogRecords?$count=true, 
 
 2. Authorization Type选择Bearer Token，填上由上一步获取的access_token
