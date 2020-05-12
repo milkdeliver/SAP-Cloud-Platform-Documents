@@ -3,7 +3,7 @@
 - [通过Audit API 查询系统登录日志](#通过audit-api-查询系统登录日志)
   - [1 设置Platform API客户端](#1-设置platform-api客户端)
   - [2 获取Bearer Token](#2-获取bearer-token)
-  - [3 访问api获取日子信息](#3-访问api获取日子信息)
+  - [3 访问api获取日志信息](#3-访问api获取日志信息)
 - [参考文档](#参考文档)
 
 <!-- /TOC -->
@@ -31,7 +31,7 @@
 点击Post,获取到Bearer Token, Access_token。这个Access_Token注意保留下一步有用。
 
 
-### 3 访问api获取日子信息
+### 3 访问api获取日志信息
 Postman另外开一个窗口，获取Audit Log信息。
 ![alt text](./img/api-01.png)
 
