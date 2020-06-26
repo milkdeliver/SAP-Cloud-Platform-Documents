@@ -1,0 +1,311 @@
+= Integration with Connectivity and Destination
+
+== Preparation
+
+You need to prepare below before you start the Integration.
+
+* Account to login to SAP Cloud Platform
+* Access to github.wdf
+* Access to download the Cloud Collector from https://tools.hana.ondemand.com/#cloud[Download Cloud Collector for Windowns]
+* Internet access to download Microsoft Visual Studio C++ 2013 runtime libraries (vcredist_x64.exe) from link:https://www.microsoft.com/en-us/download/details.aspx?id=40784[Visual C++ Redistributable Packages for Visual Studio 2013]
+* Java 8 download and installation
+* SAP JVM download from https://tools.hana.ondemand.com/#cloud[Download SAP JVM]
+* SAP Cloud Collector download from https://tools.hana.ondemand.com/#cloud[SAP Development Tools for Eclipse (portable variant)]
+
+== Installation of prepared components (Follow below sequence)
+
+* Installation for Microsoft Visual Studio C++ 2013 runtime libraries 
+* Java 8 installation
+* Installation for SAP JVM from link:https://help.sap.com/viewer/65de2977205c403bbc107264b8eccf4b/Cloud/en-US/76137f42711e1014839a8273b0e91070.html[SAP JVM Installation]
+
+NOTE: The SAP JVM only includes JDK files, you can choose to use it or not depends on your situation.
+
+
+=== Installation of Cloud Connector
+
+Here the *_portable_* version was chosed as the installed version. You only need to download it and extract it as a directory in your local system.
+
+=== Start the Cloud Connector
+
+. Go to the root directory of your cloud connector
+. Open your browser and go to your https://localhost:8443[localhost]
+
+Once you login to your local host in your browser, your Cloud Connector output window prompts messages as below:
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/cloud-connector-command-window.png[Cloud Connector Command Window]
+
+NOTE: The *_localhost_* in the url can be replaced with the *_host name_* of your local.
+Once you login into the Cloud Connector, you might need to change you password.
+The default login username/password is *_Administrator/manage_*.
+
+
+
+
+== Configuration of Cloud Connector
+
+=== Prerequisites
+
+* The subaccount user that you use for initial setup must be a member of the global account that the subaccount belongs to
+* In the Neo environment, the subaccount user that you use for initial setup must be assigned to the Cloud Connector Admin or Administrator role
+
+=== Manage Subaccount
+
+NOTE: The Region should be *_cf.cn40.platform.sapcloud.cn_*.
+The *_Subaccount_* should be got from your subaccount information in SAP Cloud Foundry cockpit and should be the UUID format.
+The *_username_* should be your username login to the SAP Cloud Foundry, usually it should be email address.
+The *_password_* should be the password of your login username.
+
+After you complete the subaccount configuration you shall see below page:
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/subaccount-dashboard.png[Subaccount Dashboard]
+
+NOTE: You can find the related log in your local directory *_..\sapcc-2.12.2-windows-x64\log_*
+
+
+=== Configure Access Control
+
+Specify the backend systems that can be accessed by your cloud applications.
+To allow your cloud applications to access a certain backend system on the intranet, you must specify this system in the Cloud Connector. The procedure is specific to the protocol that you are using for communication.
+
+NOTE: Here only choose Configure Access Control (HTTP) for example, if your scenario is different you can go to link:https://help.sap.com/viewer/cca91383641e40ffbe03bdc78f00f681/Cloud/en-US/f42fe4471d6a4a5fb09b7f3bb83c66a4.html[Configure Access Control] for more detail.
+
+==== Configure Access Control (HTTP)
+
+Specify the backend systems that can be accessed by your cloud applications using HTTP.
+To allow your cloud applications to access a certain backend system on the intranet via HTTP, you must specify this system in the Cloud Connector.
+
+. Choose Cloud To On Premise from your Subaccount menu.
+. Choose Add. A wizard will open and ask for the required values.
+. Backend Type: Select the description that matches best the addressed backend system.
+
+NOTE: Here only choose *_Non-SAP System_* as the example. The *_protocol_* uses *_HTTPS_*.
+The *_Internet Host_* uses *_github.wdf.sap.corp_*. The *_Internet Port_* uses *_443_*.
+The *_Virtual Host_* and *_Virtual Port_* values automatically input as the same value with Internet Host and Internet Port.
+The *_Principal Type_* keeps its default value.
+
+
+[cols=2*,options=header]
+|===
+|Configuration Option
+|Value
+
+|protocol
+|HTTPS
+
+|Internet Host
+|github.wdf.sap.corp
+
+|Internet Port
+|443
+
+|Virtual Host
+|github.wdf.sap.corp
+
+|Virtual Port
+|443
+
+|Principal Type
+|None
+
+|Host In Request Header
+|Use Virtual Host
+
+|===
+
+
+
+NOTE: The option value set as *_Use Internal Host_* when the out proxy connects.
+
+You can click below button to check the host is reachable or not:
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/access-control-https-test-reachable.png[HTTPS Access Control Reachable]
+
+
+==== Limit the Accessible Services for HTTP(S)
+
+By limiting the acessible service for HTTPS, you need to specify which URL paths(*_Resources_*) are allowed to be invoked on the *_host_* you configured in above section.
+The Cloud Connector uses very strict white-lists for its access control, so only those URLs for which you explicitly granted access are allowed. 
+All other HTTP(S) requests are denied by the Cloud Connector.
+
+NOTE: Add multiple paths according to your situation.
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/limit-access-resource.png[Limit Access Resource]
+
+
+== Using Service 
+
+=== Create Connectivity Service
+
+Go to service marketplace and create a new Connectivity service.
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/create-connectivity-service.png[Create Connectivity Service Instance]
+
+
+=== Create Connectivity serivice key
+
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/application-studio-service-key.png[Create Connectivity Service Instance Key]
+
+=== Create Desitnation Service
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/create-destination-service.png[Create Destination Service Instance Key]
+
+
+=== Create Desitnation Service Key
+
+Record below attributes to use in the next few steps:
+
+[cols=1*,options=header]
+|===
+|Attributes in Service Key credentials
+
+|clientid
+
+|clientsecret
+
+|url
+
+|uri
+
+|===
+
+=== Get access token for the destination service
+
+Type link:https://destination-configuration.cfapps.cn40.platform.sapcloud.cn/destination-configuration/v1/instanceDestination[URL] to try to get the access token.
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/get-access-token.png[Get Access Token]
+
+A sub window prompts for detail attributes input.
+
+Please follow below to input parameters in Postman:
+
+[cols=2*,options=header]
+|===
+|Parameter
+|Desscription
+
+|Token Name
+|Input any value as you wish
+
+|Access Token URL
+|Use *_url_* in the service key credentials
+
+|Client ID
+|Use *_clientid_* in the service key credentials
+
+|Client Secret
+|Use *_clientsecret_* in the service key credentials
+
+|Grant Type
+|Select *_Client Credentials_*
+
+
+|===
+
+NOTE: You need to manually add *_/oauth/token_* behind of the *_Access Token URL_*.
+After you click the *_Request Token_* the acess token window will disappear and return back to the main page of Postman.
+You will see the token you operated displayed in the token list.
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/get-access-token-2.png[Get Access Token 2]
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/get-access-token-3.png[Get Access Token 3]
+
+Clieck *_Use Token_* to add the token into the request header.
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/get-access-token-4.png[Get Access Token 4]
+
+You will see the token you requested was added into the request header.
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/get-access-token-5.png[Get Access Token 5]
+
+=== Request to set the new destination
+
+Reuse the request in the above, just change the Request type to *_POST_*.
+
+Use below as the request body content as *_JSON_* format:
+
+.Request Body as JSON format
+----
+{
+	"Name": "application-studio-test",
+	"Type": "HTTP",
+	"URL": "http://github.wdf.sap.corp:443",
+	"ProxyType": "OnPremise",
+	"PropertyName": "application-studio-test",
+	"Description": "This is the demo for the connectivity and destination",
+	"TruestAll": "true",
+    "Authentication": "NoAuthentication",
+	"WebIDEEnabled": "true"
+}
+----
+
+Set the request URL as https://destination-configuration.cfapps.cn40.platform.sapcloud.cn/destination-configuration/v1/subaccountDestinations
+
+You will see the return code is 201:
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/destination-request-1.png[Destination Request 1]
+
+
+
+=== Request to get the new added destination
+
+Set the request URL as https://destination-configuration.cfapps.cn40.platform.sapcloud.cn/destination-configuration/v1/subaccountDestinations
+Use the *_Get_* method and reuse the access token in the above.
+
+You will find the new added destination from the response.
+
+image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/destination-request-2.png[Destination Request 2]
+
+
+
+= Resources
+
+
+
+[cols=1*,options=header]
+|===
+|Resource Link
+
+|link:https://help.sap.com/viewer/9d1db9835307451daa8c930fbd9ab264/Cloud/en-US/e72930c96b664e3ea4ce5288eb84075f.html[Accesing On Premise System]
+
+|link:https://api.sap.com/package/scpconnectivity?section=Artifacts[Destination Service REST API Endpoints]
+
+|link:https://destination-configuration.cfapps.cn40.platform.sapcloud.cn/destination-configuration/v1/subaccountDestinations/{Destination Name}[Destination Service REST API DELETE(Select DELETE Method)]
+
+|link:https://help.sap.com/viewer/cca91383641e40ffbe03bdc78f00f681/Cloud/en-US/e54cc8fbbb571014beb5caaf6aa31280.html[Connectivity on Help Portal]
+
+
+
+|===
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
