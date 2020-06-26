@@ -32,7 +32,7 @@ Here the *_portable_* version was chosed as the installed version. You only need
 
 Once you login to your local host in your browser, your Cloud Connector output window prompts messages as below:
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/cloud-connector-command-window.png[Cloud Connector Command Window]
+image::../img/ZResources/cloud-connector-command-window.png[Cloud Connector Command Window]
 
 NOTE: The *_localhost_* in the url can be replaced with the *_host name_* of your local.
 Once you login into the Cloud Connector, you might need to change you password.
@@ -57,7 +57,7 @@ The *_password_* should be the password of your login username.
 
 After you complete the subaccount configuration you shall see below page:
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/subaccount-dashboard.png[Subaccount Dashboard]
+image::../img/ZResources/subaccount-dashboard.png[Subaccount Dashboard]
 
 NOTE: You can find the related log in your local directory *_..\sapcc-2.12.2-windows-x64\log_*
 
@@ -118,7 +118,7 @@ NOTE: The option value set as *_Use Internal Host_* when the out proxy connects.
 
 You can click below button to check the host is reachable or not:
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/access-control-https-test-reachable.png[HTTPS Access Control Reachable]
+image::../img/ZResources/access-control-https-test-reachable.png[HTTPS Access Control Reachable]
 
 
 ==== Limit the Accessible Services for HTTP(S)
@@ -129,7 +129,7 @@ All other HTTP(S) requests are denied by the Cloud Connector.
 
 NOTE: Add multiple paths according to your situation.
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/limit-access-resource.png[Limit Access Resource]
+image::../img/ZResources/limit-access-resource.png[Limit Access Resource]
 
 
 == Using Service 
@@ -138,17 +138,17 @@ image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZR
 
 Go to service marketplace and create a new Connectivity service.
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/create-connectivity-service.png[Create Connectivity Service Instance]
+image::../img/ZResources/create-connectivity-service.png[Create Connectivity Service Instance]
 
 
 === Create Connectivity serivice key
 
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/application-studio-service-key.png[Create Connectivity Service Instance Key]
+image::../img/ZResources/application-studio-service-key.png[Create Connectivity Service Instance Key]
 
 === Create Desitnation Service
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/create-destination-service.png[Create Destination Service Instance Key]
+image::../img/ZResources/create-destination-service.png[Create Destination Service Instance Key]
 
 
 === Create Desitnation Service Key
@@ -173,7 +173,7 @@ Record below attributes to use in the next few steps:
 
 Type link:https://destination-configuration.cfapps.cn40.platform.sapcloud.cn/destination-configuration/v1/instanceDestination[URL] to try to get the access token.
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/get-access-token.png[Get Access Token]
+image::../img/ZResources/get-access-token.png[Get Access Token]
 
 A sub window prompts for detail attributes input.
 
@@ -206,17 +206,17 @@ NOTE: You need to manually add *_/oauth/token_* behind of the *_Access Token URL
 After you click the *_Request Token_* the acess token window will disappear and return back to the main page of Postman.
 You will see the token you operated displayed in the token list.
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/get-access-token-2.png[Get Access Token 2]
+image::../img/ZResources/get-access-token-2.png[Get Access Token 2]
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/get-access-token-3.png[Get Access Token 3]
+image::../img/ZResources/get-access-token-3.png[Get Access Token 3]
 
 Clieck *_Use Token_* to add the token into the request header.
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/get-access-token-4.png[Get Access Token 4]
+image::../img/ZResources/get-access-token-4.png[Get Access Token 4]
 
 You will see the token you requested was added into the request header.
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/get-access-token-5.png[Get Access Token 5]
+image::../img/ZResources/get-access-token-5.png[Get Access Token 5]
 
 === Request to set the new destination
 
@@ -243,7 +243,7 @@ Set the request URL as https://destination-configuration.cfapps.cn40.platform.sa
 
 You will see the return code is 201:
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/destination-request-1.png[Destination Request 1]
+image::../img/ZResources/destination-request-1.png[Destination Request 1]
 
 
 
@@ -254,7 +254,7 @@ Use the *_Get_* method and reuse the access token in the above.
 
 You will find the new added destination from the response.
 
-image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZResources/destination-request-2.png[Destination Request 2]
+image::../img/ZResources/destination-request-2.png[Destination Request 2]
 
 
 
@@ -277,6 +277,39 @@ image::https://github.wdf.sap.corp/sap-samples-scpcn/delivery-center/blob/dev/ZR
 
 
 |===
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
